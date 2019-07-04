@@ -4,9 +4,7 @@ from .filters import RichEnumFieldListFilter
 from ..models.fields import IndexEnumField, LaxIndexEnumField, CanonicalNameEnumField
 from .options import RichEnumModelAdmin
 
-__all__ = [
-    "RichEnumModelAdmin"
-]
+__all__ = ["RichEnumModelAdmin"]
 
 
 __registered = False
@@ -21,8 +19,11 @@ def register_admin_filters():
 
     if not __registered:
         admin.FieldListFilter.register(
-            lambda f: isinstance(f, (IndexEnumField, LaxIndexEnumField, CanonicalNameEnumField)),
+            lambda f: isinstance(
+                f, (IndexEnumField, LaxIndexEnumField, CanonicalNameEnumField)
+            ),
             RichEnumFieldListFilter,
-            take_priority=True)
+            take_priority=True,
+        )
 
         __registered = True

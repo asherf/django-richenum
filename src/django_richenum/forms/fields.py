@@ -9,7 +9,9 @@ from richenum import EnumLookupError, OrderedRichEnumValue
 
 
 try:
-    from django.forms.fields import RenameFieldMethods  # pylint: disable=no-name-in-module
+    from django.forms.fields import (
+        RenameFieldMethods,
+    )  # pylint: disable=no-name-in-module
 except ImportError:
     # Fallback for Django versions < 1.8
     RenameFieldMethods = object
@@ -28,15 +30,19 @@ class _BaseEnumField(object):
     def __init__(self, enum, *args, **kwargs):
         self.enum = enum
         # Django default is empty string
-        kwargs.setdefault('empty_value', self._empty_value_factory())  # pylint: disable=E1120
+        kwargs.setdefault(
+            "empty_value", self._empty_value_factory()
+        )  # pylint: disable=E1120
 
-        if 'choices' in kwargs:
-            raise ValueError('Cannot explicitly supply choices to enum fields.')
-        if 'coerce' in kwargs:
-            raise ValueError('Cannot explicitly supply coercion function to enum fields.')
+        if "choices" in kwargs:
+            raise ValueError("Cannot explicitly supply choices to enum fields.")
+        if "coerce" in kwargs:
+            raise ValueError(
+                "Cannot explicitly supply coercion function to enum fields."
+            )
 
-        kwargs['choices'] = self.get_choices()
-        kwargs['coerce'] = self.coerce_value
+        kwargs["choices"] = self.get_choices()
+        kwargs["coerce"] = self.coerce_value
         super(_BaseEnumField, self).__init__(*args, **kwargs)
 
     @abstractmethod
@@ -87,7 +93,7 @@ class _BaseIndexField(_BaseEnumField):
     """
 
     def get_choices(self):
-        return self.enum.choices(value_field='index')
+        return self.enum.choices(value_field="index")
 
     def coerce_value(self, index):
         try:

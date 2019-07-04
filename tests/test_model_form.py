@@ -5,15 +5,13 @@ from .models import NumNode
 
 
 class NumNodeModelForm(forms.ModelForm):
-
     class Meta:
         model = NumNode
         # explicitly list the all fields for compatibility across Django version
-        fields = ("num", "num_nullable", "num_lax", "num_str", "num_str_nullable", )
+        fields = ("num", "num_nullable", "num_lax", "num_str", "num_str_nullable")
 
 
 class ModelFormTests(TestCase):
-
     def test_model_form(self):
         form_data = {
             "num": "1",

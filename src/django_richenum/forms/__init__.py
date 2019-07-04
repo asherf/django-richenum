@@ -5,8 +5,8 @@ from .fields import MultipleIndexEnumField  # noqa
 
 
 __all__ = (
-    'CanonicalEnumField',
-    'IndexEnumField',
-    'MultipleCanonicalEnumField',
-    'MultipleIndexEnumField',
+    "CanonicalEnumField",
+    "IndexEnumField",
+    "MultipleCanonicalEnumField",
+    "MultipleIndexEnumField",
 )

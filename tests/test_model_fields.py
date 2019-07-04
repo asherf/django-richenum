@@ -28,7 +28,7 @@ class IndexFieldTests(TestCase):
         m = NumNode(num=Number.ONE)
         m.save()
         display_name = NumNode.objects.get(num=Number.ONE).num.display_name
-        self.assertEqual(display_name, 'uno')
+        self.assertEqual(display_name, "uno")
 
     def test_queries_with_enum_values(self):
         m = NumNode(num=Number.ONE)
@@ -70,10 +70,10 @@ class IndexFieldTests(TestCase):
 def LaxIndexFieldTests(TestCase):
     def test_allows_canonical(self):
         # Also allow using canonical name.
-        m = NumNode(num='one')
+        m = NumNode(num="one")
         m.save()
-        self.assertEqual(m.num.display_name, 'uno')
-        self.assertEqual(NumNode.objects.filter(num='one').count(), 1)
+        self.assertEqual(m.num.display_name, "uno")
+        self.assertEqual(NumNode.objects.filter(num="one").count(), 1)
 
 
 class CanonicalNameFieldTests(TestCase):
@@ -99,7 +99,7 @@ class CanonicalNameFieldTests(TestCase):
         m = NumNode(num_str=Number.ONE)
         m.save()
         display_name = NumNode.objects.get(num_str=Number.ONE).num_str.display_name
-        self.assertEqual(display_name, 'uno')
+        self.assertEqual(display_name, "uno")
 
     def test_queries_with_enum_values(self):
         m = NumNode(num_str=Number.ONE)
@@ -109,7 +109,7 @@ class CanonicalNameFieldTests(TestCase):
     def test_queries_with_strs(self):
         m = NumNode(num_str=Number.ONE)
         m.save()
-        self.assertEqual(NumNode.objects.filter(num_str='one').count(), 1)
+        self.assertEqual(NumNode.objects.filter(num_str="one").count(), 1)
 
     def test_joins_with_enum_values(self):
         first = NumNode()
@@ -124,7 +124,7 @@ class CanonicalNameFieldTests(TestCase):
         first.save()
         second = NumNode(num_str=Number.TWO, parent=first)
         second.save()
-        num_children = NumNode.objects.filter(parent__num_str='one').count()
+        num_children = NumNode.objects.filter(parent__num_str="one").count()
         self.assertEqual(num_children, 1)
 
     def test_default_forbids_nulls(self):

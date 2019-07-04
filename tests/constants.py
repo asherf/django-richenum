@@ -9,8 +9,8 @@ class _Number(OrderedRichEnumValue):
 
 
 class Number(OrderedRichEnum):
-    ONE = _Number(1, 'one', 'uno')
-    TWO = _Number(2, 'two', 'dos')
+    ONE = _Number(1, "one", "uno")
+    TWO = _Number(2, "two", "dos")
 
 
 class _Fruit(RichEnumValue):
@@ -18,5 +18,5 @@ class _Fruit(RichEnumValue):
 
 
 class Fruit(RichEnum):
-    APPLE = _Fruit('apple', 'manzana')
-    PEACH = _Fruit('peach', 'melocoton')
+    APPLE = _Fruit("apple", "manzana")
+    PEACH = _Fruit("peach", "melocoton")

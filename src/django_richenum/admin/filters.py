@@ -23,9 +23,11 @@ class RichEnumFieldListFilter(admin.FieldListFilter):
         elif issubclass(self.enum, RichEnum):
             form_attrs[self.lookup_kwarg] = CanonicalNameEnumFormField(self.enum)
 
-        self.form_cls = type(form_cls_name, (forms.Form, ), form_attrs)
+        self.form_cls = type(form_cls_name, (forms.Form,), form_attrs)
 
-        super(RichEnumFieldListFilter, self).__init__(field, request, params, model, model_admin, field_path)
+        super(RichEnumFieldListFilter, self).__init__(
+            field, request, params, model, model_admin, field_path
+        )
 
     def expected_parameters(self):
         return [self.lookup_kwarg]
@@ -48,8 +50,7 @@ class RichEnumFieldListFilter(admin.FieldListFilter):
         for lookup, title in choices:
             yield {
                 "selected": smart_text(lookup) == self.lookup_val,
-                "query_string": cl.get_query_string({
-                    self.lookup_kwarg: lookup}),
+                "query_string": cl.get_query_string({self.lookup_kwarg: lookup}),
                 "display": title,
             }
 
